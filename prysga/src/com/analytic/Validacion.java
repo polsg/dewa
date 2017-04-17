@@ -1,17 +1,7 @@
 package com.analytic;
 
 
-public class Validacion {
-
-	public boolean validarOracion(String tokens){
-		boolean val;
-		String[] values = tokens.split(" ");
-		for(int t=0; t<values.length;t++){
-			
-		}			
-		return true;
-	}
-	
+public class Validacion {	
 	
 	public boolean validarPredicado(String val){		
 		String[] tokens = val.split(" ");		
@@ -35,13 +25,4 @@ public class Validacion {
 		}		
 		return pos;
 	}
-	
-	public boolean validarCondicional(){
-		
-		return true;
-	}
-	
-	
-	
-
 }

@@ -70,9 +70,7 @@ public class ProcesoController {
 	public @ResponseBody String procesoDiagrama(@ModelAttribute(value="te") Texto te,BindingResult result,ModelMap model){	
 		Analizador anle = new Analizador();		
 		
-		String[] sepaOra = te.getActividad().split(">");
-		//System.out.println(sepaOra[1]);
-		
+		String[] sepaOra = te.getActividad().split(">");		
 		String res = anle.asignarTokens(sepaOra[1].trim());	
 		
 		return anle.separarOracion(anle.getTokens(res),te.getActividad());		
