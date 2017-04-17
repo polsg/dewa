@@ -1,7 +1,7 @@
 package com.analytic;
 
 
-public class Validacion {	
+public class Validacion {
 	
 	public boolean validarPredicado(String val){		
 		String[] tokens = val.split(" ");		

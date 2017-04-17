@@ -68,12 +68,17 @@ public class ProcesoController {
 	
 	@RequestMapping(value="/setTokens",method=RequestMethod.POST)
 	public @ResponseBody String procesoDiagrama(@ModelAttribute(value="te") Texto te,BindingResult result,ModelMap model){	
-		Analizador anle = new Analizador();		
+		Analizador a1 = new Analizador();		
 		
-		String[] sepaOra = te.getActividad().split(">");		
-		String res = anle.asignarTokens(sepaOra[1].trim());	
+		String[] texto = te.getActividad().split(">");		
+		a1.asignarTokens(texto[1].trim());	
+		a1.getTokens();
+		a1.getWords();
 		
-		return anle.separarOracion(anle.getTokens(res),te.getActividad());		
+		System.out.print(a1.getTokens()+">"+a1.getWords());
+		
+		//return a1.separarOracion(a1.getTokens(res),te.getActividad());		
+		return "";
 	}
 	
 	@RequestMapping(value="/Diagram",method=RequestMethod.GET)

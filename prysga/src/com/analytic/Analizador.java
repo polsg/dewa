@@ -2,14 +2,10 @@ package com.analytic;
 
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
-import java.util.StringTokenizer;
-
-import com.model.*;
 
 public class Analizador {
 	
 	private static String tagged;
-	private static String msj;
 	
 	public String asignarTokens(String sample){		
 		// Initialize the tagger
@@ -18,32 +14,36 @@ public class Analizador {
 		return tagged;
 	}
 	
-	public String getWordsTokens(String val){		
-		String[] palabratokens;
-        String valToken="";
-        palabratokens = val.split("\\s");
-        for (int i = 0; i < palabratokens.length; i++) {        	
-        	valToken +=palabratokens[i]+" ";
-            //System.out.println(palabratokens[i]);
-        }			
-		return valToken.trim();
-	}
-	
-	public String getTokens(String val){		
+	public String getTokens(){		
 		String[] palabratokens,tokens;
-        String valToken="";
-        palabratokens = val.split("\\s");
+        String valTokens="";
+        palabratokens = tagged.split("\\s");
         for (int i = 0; i < palabratokens.length; i++) {
         	tokens = palabratokens[i].split("_");
         	for(int j=0;j < tokens.length;j++){
         		if(j%2!=0){
-        			valToken += tokens[j]+" ";
+        			valTokens += tokens[j]+" ";
+        		}
+        	}    
+        }			
+		return valTokens.trim();
+	}	
+	
+	public String getWords(){		
+		String[] palabratokens,tokens;
+        String valWords="";
+        palabratokens = tagged.split("\\s");
+        for (int i = 0; i < palabratokens.length; i++) {
+        	tokens = palabratokens[i].split("_");
+        	for(int j=0;j < tokens.length;j++){
+        		if(j%2==0){
+        			valWords += tokens[j]+" ";
         		}
         	}
             //System.out.println(palabratokens[i]);
         }			
-		return valToken.trim();
-	}	
+		return valWords.trim();
+	}
 	
 	public String separarOracion(String val,String paso)
 	{	
