@@ -85,29 +85,31 @@ procTemp = {
 		params.actividad = valuesText.substring(0,valuesText.length -1);*/
 		params.actividad = procTemp.campo+'>'+$('#step'+(procTemp.campo)).val()
 		
-		if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SI' && procTemp.campo==1){
+		if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SI' && procTemp.campo==1)
+		{
 			alert('No se puede iniciar una condicion en el primer paso')
-		}else{
-	
-		$.post(appName+'setTokens',params,function(data){
-			
-			var dataString = data.split(">");
-			if(dataString[0].trim()=='true'){
-				procTemp.cadenaUml= procTemp.cadenaUml+dataString[1].trim()+" \n "; 
-				alert(procTemp.cadenaUml)
-				$confirmar = confirm("Dese Finalizar el Proceso?");
-				 if($confirmar){
-					 procTemp.cadenaUml += "\n stop \n";
-					 procTemp.sigPaso=false;
-				 }else{
-					 procTemp.agregarPaso();
-					 procTemp.sigPaso=true;
-				 }
-				 
-			}else{
-				alert('Error en la oracion: no se tiene el verbo indicado')
-			}			
-        });
+		}
+		else
+		{	
+			$.post(appName+'setTokens',params,function(data){
+				
+				var dataString = data.split(">");
+				if(dataString[0].trim()=='true'){
+					procTemp.cadenaUml= procTemp.cadenaUml+dataString[1].trim()+" \n "; 
+					alert(procTemp.cadenaUml)
+					$confirmar = confirm("Dese Finalizar el Proceso?");
+					 if($confirmar){
+						 procTemp.cadenaUml += "\n stop \n";
+						 procTemp.sigPaso=false;
+					 }else{
+						 procTemp.agregarPaso();
+						 procTemp.sigPaso=true;
+					 }
+					 
+				}else{
+					alert('Error en la oracion: no se tiene el verbo indicado')
+				}			
+	        });
 		}
 		return verdad;
 		

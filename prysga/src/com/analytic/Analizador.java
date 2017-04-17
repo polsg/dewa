@@ -6,6 +6,7 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 public class Analizador {
 	
 	private static String tagged;
+	private static String msj;
 	
 	public String asignarTokens(String sample){		
 		// Initialize the tagger
@@ -45,7 +46,37 @@ public class Analizador {
 		return valWords.trim();
 	}
 	
-	public String separarOracion(String val,String paso)
+	public Oracion analTexto(String tokens,String words){
+		Validacion v1 = new Validacion();
+		Oracion o1 = new Oracion();
+		String[] oracion = words.trim().split(" ");
+		String sujeto="";
+		String predicado="";
+			if(v1.validarPredicado(tokens))
+			{		
+				
+				for(int s=0; s<v1.posicVerbo(tokens);s++){
+					sujeto += oracion[s]+" ";
+				}
+				
+				for(int p=v1.posicVerbo(tokens);p<oracion.length;p++){
+					predicado += oracion[p]+" ";
+				}
+				o1.setSujeto(sujeto);
+				o1.setPredicado(predicado);
+				o1.setMensaje("oracion correcta");
+				o1.setEstado("true");
+			}
+			else
+			{				
+				o1.setMensaje("no existe el verbo indicado");
+				o1.setEstado("false");
+			}
+		return o1;
+		
+	}
+	
+/*	public String separarOracion(String val,String paso)
 	{	
 		String mensaje="";
 		String empiezo="";
@@ -53,11 +84,10 @@ public class Analizador {
 		String sujeto="";
 		String predicado="";
 		//String msj="";
-		Oracion ora = new Oracion();
+		
 		Validacion as = new Validacion();
 		
-		//System.out.println(paso.charAt(0));
-	
+			
 		String[] sepaOra = paso.split(">");
 		
 		
@@ -91,7 +121,7 @@ public class Analizador {
 		
 		//mensaje = msj;
 		return mensaje;
-	}	
+	}	*/
 	
 	
 	
