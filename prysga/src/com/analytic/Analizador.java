@@ -6,7 +6,6 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 public class Analizador {
 	
 	private static String tagged;
-	private static String msj;
 	
 	public String asignarTokens(String sample){		
 		// Initialize the tagger
@@ -41,7 +40,6 @@ public class Analizador {
         			valWords += tokens[j]+" ";
         		}
         	}
-            //System.out.println(palabratokens[i]);
         }			
 		return valWords.trim();
 	}
@@ -53,8 +51,7 @@ public class Analizador {
 		String sujeto="";
 		String predicado="";
 			if(v1.validarPredicado(tokens))
-			{		
-				
+			{						
 				for(int s=0; s<v1.posicVerbo(tokens);s++){
 					sujeto += oracion[s]+" ";
 				}

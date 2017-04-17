@@ -91,11 +91,10 @@ procTemp = {
 		}
 		else
 		{	
-			$.post(appName+'setTokens',params,function(data){
-				
-				var dataString = data.split(">");
-				if(dataString[0].trim()=='true'){
-					procTemp.cadenaUml= procTemp.cadenaUml+dataString[1].trim()+" \n "; 
+			$.post(appName+'analizarTexto',params,function(data){				
+				alert(data.mensaje+": "+data.estado)			
+				if(data.estado == 'true'){					
+					procTemp.cadenaUml = procTemp.umlSuj(data.sujeto) + procTemp.umlPre(data.predicado); 
 					alert(procTemp.cadenaUml)
 					$confirmar = confirm("Dese Finalizar el Proceso?");
 					 if($confirmar){
@@ -104,10 +103,9 @@ procTemp = {
 					 }else{
 						 procTemp.agregarPaso();
 						 procTemp.sigPaso=true;
-					 }
-					 
+					 }					 
 				}else{
-					alert('Error en la oracion: no se tiene el verbo indicado')
+					alert(data.mensaje)
 				}			
 	        });
 		}
@@ -119,5 +117,14 @@ procTemp = {
 			 $(this).html(e);	
 			 $(this).html('<br><img uml="'+procTemp.cadenaUml+'">');	            
 		});
-	},		
+	},	
+	umlSuj: function(val){
+		return "|"+val+"| \n";
+	},
+	umlPre: function(val){
+		return ":"+val+"; \n";
+	},
+	umlCond: function(val){
+		return if
+	}
 }
