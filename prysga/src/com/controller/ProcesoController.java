@@ -73,7 +73,8 @@ public class ProcesoController {
 		Oracion o1 = new Oracion();
 		Analizador a1 = new Analizador();			
 		a1.asignarTokens(texto[1].trim());			
-		o1 = a1.analize(a1.getTokens(), a1.getWords());			
+		o1 = a1.analize(a1.getTokens(), a1.getWords());	
+		System.out.print(a1.getTokens()+"\n"+ a1.getWords());
 		return o1;
 	}
 	

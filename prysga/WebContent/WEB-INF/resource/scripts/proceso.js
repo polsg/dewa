@@ -107,7 +107,7 @@ procTemp = {
 					alert(data.mensaje)	
 					if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SI')
 						{
-							alert (data.condicion);
+							alert (data.condicion+"\n"+data.sujeto+"\n"+data.predicado);
 						}
 					else
 						{
@@ -148,15 +148,15 @@ procTemp = {
 		}
 		else
 		{
-			empiezo ="\n start \n";
+			empiezo ="start\n";
 		}
 		alert(empiezo)
-		return "|"+val.sujeto+"|"+empiezo+" \n :"+val.predicado+"; \n";
+		return "|"+val.sujeto+"|\n"+empiezo+":"+val.predicado+";\n";
 	},	
 	umlCond: function(val){
 		return "if ("+val.condicion+") then \n "+procTemp.umlOraSimple(val);
 	},
 	umlCondSino: function(val){
-		return "else \n "+procTemp.umlOraSimple(val)+"\n";
+		return "else\n"+procTemp.umlOraSimple(val)+"\n";
 	}
 }

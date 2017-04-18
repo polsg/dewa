@@ -42,7 +42,7 @@ public class Validacion {
 		String[] tokens = val.split(" ");		
 		for(int p = 0; p<tokens.length;p++)
 		{
-			if(tokens[p].equals(",")){
+			if(tokens[p].equals("fc")){
 				pos = p;
 			}
 		}		

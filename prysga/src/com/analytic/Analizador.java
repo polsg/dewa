@@ -48,22 +48,53 @@ public class Analizador {
 		Validacion v1 = new Validacion();
 		Oracion o1 = new Oracion();
 		String[] oracion = words.trim().split(" ");
+		String[] tok = tokens.trim().split(" ");
 		String sujeto="";
 		String predicado="";
 		String condicion="";
+		String oracondicion="";
 		
 			if(oracion[0].toUpperCase().equals("SI")){
 				if(v1.buscarComa(words.trim()))
 				{
-					for(int s=1; s<v1.posicComa(tokens);s++){
-						condicion += oracion[s]+" ";
+					for(int c=1; c<v1.posicComa(tokens);c++)
+					{
+						condicion += oracion[c]+" ";						
+					}					
+										
+					String[] cond = words.trim().split(",");
+					String[] oraCon = cond[1].trim().split(" ");
+					String tokensOracion="";
+					
+					for(int ot=v1.posicComa(tokens); ot<tok.length;ot++)
+					{
+						tokensOracion += tok[ot]+" ";						
 					}
-					System.out.print(condicion);
-					o1.setCondicion(condicion);
+					
+					if(v1.validarPredicado(tokensOracion))
+					{						
+						for(int s=0; s<v1.posicVerbo(tokensOracion);s++){
+							sujeto += oraCon[s]+" ";
+						}
+						
+						for(int p=v1.posicVerbo(tokensOracion);p<oraCon.length;p++){
+							predicado += oraCon[p]+" ";
+						}
+						o1.setCondicion(condicion.trim());
+						o1.setSujeto(sujeto.trim());
+						o1.setPredicado(predicado.trim());
+						o1.setMensaje("oracion correcta");
+						o1.setEstado("true");
+					}
+					else
+					{				
+						o1.setMensaje("no existe el verbo indicado");
+						o1.setEstado("false");
+					}					
 				}
 				else
 				{
-					o1.setMensaje("La oracion condicional no valida");
+					o1.setMensaje("La oracion condicional no valida : No se encuentra la coma");
 					o1.setEstado("false");
 				}
 				
