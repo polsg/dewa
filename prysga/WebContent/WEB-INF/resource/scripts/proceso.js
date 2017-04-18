@@ -100,14 +100,6 @@ procTemp = {
 		}
 		else
 		{	
-			if(procTemp.campo!=1)
-			{
-				procTemp.cadenaUml =" ";
-			}
-			else
-			{
-				procTemp.cadenaUml ="\n start \n";
-			}
 			
 			$.post(appName+'analizarTexto',params,function(data){		
 				//alert($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase());
@@ -119,7 +111,7 @@ procTemp = {
 						}
 					else
 						{
-							procTemp.cadenaUml += procTemp.umlOraSimple(data); 
+							procTemp.cadenaUml = procTemp.umlOraSimple(data); 
 							alert(procTemp.cadenaUml)
 							$confirmar = confirm("Dese Finalizar el Proceso?");
 							 if($confirmar){
@@ -149,7 +141,17 @@ procTemp = {
 		});
 	},	
 	umlOraSimple: function(val){
-		return "|"+val.sujeto+"| \n :"+val.predicado+"; \n";
+		var empiezo;
+		if(procTemp.campo!=1)
+		{
+			empiezo =" ";
+		}
+		else
+		{
+			empiezo ="\n start \n";
+		}
+		alert(empiezo)
+		return "|"+val.sujeto+"|"+empiezo+" \n :"+val.predicado+"; \n";
 	},	
 	umlCond: function(val){
 		return "if ("+val.condicion+") then \n "+procTemp.umlOraSimple(val);
