@@ -33,6 +33,10 @@ procTemp = {
 		procTemp.campo++;		
 		$('#listActividades').append('Paso '+procTemp.campo+': <input id="step'+procTemp.campo+'" name="step" class="form-control" type="text">');
 	},
+	finProceso:function(){
+		$('#step'+(procTemp.campo)).attr('disabled','true');		
+		$('#btnAddPasoCampo').attr('disabled','true');
+	},
 	agregarPasoCond:function(){
 		$('#step'+(procTemp.campo)).attr('disabled','true');
 		procTemp.campo++;		
@@ -108,6 +112,7 @@ procTemp = {
 			$.post(appName+'analizarTexto',params,function(data){		
 				//alert($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase());
 				if(data.estado == 'true'){	
+					alert(data.mensaje)	
 					if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SI')
 						{
 							alert (data.condicion);
@@ -119,6 +124,7 @@ procTemp = {
 							$confirmar = confirm("Dese Finalizar el Proceso?");
 							 if($confirmar){
 								 procTemp.cadenaUml += "\n stop \n";
+								 procTemp.finProceso();
 								 procTemp.sigPaso=false;
 							 }else{
 								 procTemp.agregarPaso();
@@ -127,7 +133,7 @@ procTemp = {
 						}
 						
 						 
-					alert(data.mensaje)					 
+									 
 				}else{
 					alert(data.mensaje)
 				}			
