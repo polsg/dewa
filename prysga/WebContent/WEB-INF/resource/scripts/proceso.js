@@ -27,11 +27,16 @@ procTemp = {
 	cadenaUml:"",
 	sigPaso:null,
 	stringCondi:"",
-	condicion:{},
+	condicion:0,
 	agregarPaso:function(){
 		$('#step'+(procTemp.campo)).attr('disabled','true');
 		procTemp.campo++;		
 		$('#listActividades').append('Paso '+procTemp.campo+': <input id="step'+procTemp.campo+'" name="step" class="form-control" type="text">');
+	},
+	agregarPasoCond:function(){
+		$('#step'+(procTemp.campo)).attr('disabled','true');
+		procTemp.campo++;		
+		$('#listActividades').append('Paso '+procTemp.campo+': <input id="step'+procTemp.campo+'" name="step" class="form-control" type="text" value="Sino">');
 	},
 	init:function(){	
 		$main.load(appName+'Proceso',function(e){	
@@ -91,19 +96,38 @@ procTemp = {
 		}
 		else
 		{	
-			$.post(appName+'analizarTexto',params,function(data){				
-				alert(data.mensaje+": "+data.estado)			
-				if(data.estado == 'true'){					
-					procTemp.cadenaUml = procTemp.umlSuj(data.sujeto) + procTemp.umlPre(data.predicado); 
-					alert(procTemp.cadenaUml)
-					$confirmar = confirm("Dese Finalizar el Proceso?");
-					 if($confirmar){
-						 procTemp.cadenaUml += "\n stop \n";
-						 procTemp.sigPaso=false;
-					 }else{
-						 procTemp.agregarPaso();
-						 procTemp.sigPaso=true;
-					 }					 
+			if(procTemp.campo!=1)
+			{
+				procTemp.cadenaUml =" ";
+			}
+			else
+			{
+				procTemp.cadenaUml ="\n start \n";
+			}
+			
+			$.post(appName+'analizarTexto',params,function(data){		
+				//alert($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase());
+				if(data.estado == 'true'){	
+					if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SI')
+						{
+							alert (data.condicion);
+						}
+					else
+						{
+							procTemp.cadenaUml += procTemp.umlOraSimple(data); 
+							alert(procTemp.cadenaUml)
+							$confirmar = confirm("Dese Finalizar el Proceso?");
+							 if($confirmar){
+								 procTemp.cadenaUml += "\n stop \n";
+								 procTemp.sigPaso=false;
+							 }else{
+								 procTemp.agregarPaso();
+								 procTemp.sigPaso=true;
+							 }
+						}
+						
+						 
+					alert(data.mensaje)					 
 				}else{
 					alert(data.mensaje)
 				}			
@@ -118,13 +142,13 @@ procTemp = {
 			 $(this).html('<br><img uml="'+procTemp.cadenaUml+'">');	            
 		});
 	},	
-	umlSuj: function(val){
-		return "|"+val+"| \n";
-	},
-	umlPre: function(val){
-		return ":"+val+"; \n";
-	},
+	umlOraSimple: function(val){
+		return "|"+val.sujeto+"| \n :"+val.predicado+"; \n";
+	},	
 	umlCond: function(val){
-		return if
+		return "if ("+val.condicion+") then \n "+procTemp.umlOraSimple(val);
+	},
+	umlCondSino: function(val){
+		return "else \n "+procTemp.umlOraSimple(val)+"\n";
 	}
 }

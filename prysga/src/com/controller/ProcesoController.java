@@ -71,15 +71,9 @@ public class ProcesoController {
 			
 		String[] texto = te.getActividad().split(">");	
 		Oracion o1 = new Oracion();
-		Analizador a1 = new Analizador();		
-		
-			a1.asignarTokens(texto[1].trim());			
-			o1 = a1.analTexto(a1.getTokens(), a1.getWords());		
-			
-		//System.out.print(o1.getEstado()+": "+o1.getMensaje());
-		//System.out.print(a1.getTokens()+" > "+a1.getWords());		
-		//return a1.separarOracion(a1.getTokens(res),te.getActividad());
-		
+		Analizador a1 = new Analizador();			
+		a1.asignarTokens(texto[1].trim());			
+		o1 = a1.analize(a1.getTokens(), a1.getWords());			
 		return o1;
 	}
 	

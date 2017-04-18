@@ -44,81 +44,57 @@ public class Analizador {
 		return valWords.trim();
 	}
 	
-	public Oracion analTexto(String tokens,String words){
+	public Oracion analize(String tokens,String words){
 		Validacion v1 = new Validacion();
 		Oracion o1 = new Oracion();
 		String[] oracion = words.trim().split(" ");
 		String sujeto="";
 		String predicado="";
-			if(v1.validarPredicado(tokens))
-			{						
-				for(int s=0; s<v1.posicVerbo(tokens);s++){
-					sujeto += oracion[s]+" ";
+		String condicion="";
+		
+			if(oracion[0].toUpperCase().equals("SI")){
+				if(v1.buscarComa(words.trim()))
+				{
+					for(int s=1; s<v1.posicComa(tokens);s++){
+						condicion += oracion[s]+" ";
+					}
+					System.out.print(condicion);
+					o1.setCondicion(condicion);
+				}
+				else
+				{
+					o1.setMensaje("La oracion condicional no valida");
+					o1.setEstado("false");
 				}
 				
-				for(int p=v1.posicVerbo(tokens);p<oracion.length;p++){
-					predicado += oracion[p]+" ";
+			}else{
+				if(v1.validarPredicado(tokens))
+				{						
+					for(int s=0; s<v1.posicVerbo(tokens);s++){
+						sujeto += oracion[s]+" ";
+					}
+					
+					for(int p=v1.posicVerbo(tokens);p<oracion.length;p++){
+						predicado += oracion[p]+" ";
+					}
+					o1.setSujeto(sujeto.trim());
+					o1.setPredicado(predicado.trim());
+					o1.setMensaje("oracion correcta");
+					o1.setEstado("true");
 				}
-				o1.setSujeto(sujeto);
-				o1.setPredicado(predicado);
-				o1.setMensaje("oracion correcta");
-				o1.setEstado("true");
+				else
+				{				
+					o1.setMensaje("no existe el verbo indicado");
+					o1.setEstado("false");
+				}
 			}
-			else
-			{				
-				o1.setMensaje("no existe el verbo indicado");
-				o1.setEstado("false");
-			}
+		
+			
 		return o1;
 		
 	}
 	
-/*	public String separarOracion(String val,String paso)
-	{	
-		String mensaje="";
-		String empiezo="";
-		String condicional="";
-		String sujeto="";
-		String predicado="";
-		//String msj="";
-		
-		Validacion as = new Validacion();
-		
-			
-		String[] sepaOra = paso.split(">");
-		
-		
-		String[] oracion = sepaOra[1].trim().split(" ");
-		
-		
-		if(Integer.parseInt(sepaOra[0].trim()) != 1){		
-			empiezo =" ";
-		}else{
-			empiezo ="\n start";
-		}
-		
-		if(as.validarPredicado(val)){
-			
-			for(int s=0; s<as.posicVerbo(val);s++){
-				sujeto += oracion[s]+" ";
-			}
-			
-			for(int p=as.posicVerbo(val);p<oracion.length;p++){
-				predicado += oracion[p]+" ";
-			}	
-			
-			msj="true";
-		}else{
-			predicado = "no existe el verbo indicado";
-			msj="false";
-		}	
-		mensaje = msj+" > |"+sujeto.trim()+"| "+empiezo+" \n :"+predicado.trim()+";";
-		
-		
-		
-		//mensaje = msj;
-		return mensaje;
-	}	*/
+
 	
 	
 	
