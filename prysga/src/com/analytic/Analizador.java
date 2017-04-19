@@ -65,7 +65,7 @@ public class Analizador {
 					String[] cond = words.trim().split(",");
 					String[] oraCon = cond[1].trim().split(" ");
 					String tokensOracion="";
-					
+					System.out.println(cond[1]);
 					for(int ot=v1.posicComa(tokens); ot<tok.length;ot++)
 					{
 						tokensOracion += tok[ot]+" ";						
