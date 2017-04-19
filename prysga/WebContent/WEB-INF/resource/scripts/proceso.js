@@ -20,6 +20,10 @@ $main.find('#btnGenerar').live('click',function(){
 
 $main.find('#block').live('click',function(){
 	$(this).hide();
+});
+
+$main.find('#btnShowUml').live('click',function(){
+	procTemp.umlShow();
 })
 
 procTemp = {
@@ -127,6 +131,27 @@ procTemp = {
 							 procTemp.agregarPasoCond();								 
 						 }
 					}
+					else if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SINO')
+					{
+						procTemp.umlCondSino(data)
+						$cond = confirm("Dese Finalizar la Oracion Condicional?");
+						 if($cond){
+							 procTemp.cadenaUml += "\n endif \n";							 
+							 $confirmar = confirm("Dese Finalizar el Proceso?");
+							 if($confirmar){
+								 procTemp.cadenaUml += "\n stop \n";
+								 procTemp.finProceso();								 
+							 }
+							 else
+							 {
+								 procTemp.agregarPaso();									
+							 }								 
+						 }
+						 else
+						 {
+							 procTemp.agregarPasoCond();								 
+						 }
+					}
 					else
 					{
 						procTemp.cadenaUml = procTemp.umlOraSimple(data); 
@@ -175,5 +200,8 @@ procTemp = {
 	},
 	umlCondSino: function(val){
 		return "else\n"+procTemp.umlOraSimple(val);
+	},
+	umlShow: function(val){
+		return alert(procTemp.cadenaUml);
 	}
 }

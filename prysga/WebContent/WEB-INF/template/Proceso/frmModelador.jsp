@@ -61,6 +61,8 @@
 							class="btn btn-warning" value="Eliminar Pasos" /> 
 						<input type="button" id="btnGenerar" class="btn btn-info"
 							value="Generar Diagrama" />
+						<input type="button" id="btnShowUml" class="btn btn-info"
+							value="Ver Code Uml" />
 					</div>
 				</div>
 			</div>
