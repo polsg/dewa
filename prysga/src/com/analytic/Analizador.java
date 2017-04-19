@@ -52,7 +52,7 @@ public class Analizador {
 		String sujeto="";
 		String predicado="";
 		String condicion="";
-		String oracondicion="";
+	
 		
 			if(oracion[0].toUpperCase().equals("SI")){
 				if(v1.buscarComa(words.trim()))
@@ -65,14 +65,16 @@ public class Analizador {
 					String[] cond = words.trim().split(",");
 					String[] oraCon = cond[1].trim().split(" ");
 					String tokensOracion="";
-					System.out.println(cond[1]);
-					for(int ot=v1.posicComa(tokens); ot<tok.length;ot++)
+					System.out.println(cond[1].trim()+": "+cond.length+": "+oraCon.length+": "+tok.length);
+					for(int ot=v1.posicComa(tokens)+1; ot<tok.length;ot++)
 					{
 						tokensOracion += tok[ot]+" ";						
 					}
-					
+					tokensOracion.trim();
+					//System.out.println(tokensOracion.trim());
 					if(v1.validarPredicado(tokensOracion))
-					{						
+					{		
+						//System.out.println(v1.posicVerbo(tokensOracion));
 						for(int s=0; s<v1.posicVerbo(tokensOracion);s++){
 							sujeto += oraCon[s]+" ";
 						}
@@ -80,6 +82,8 @@ public class Analizador {
 						for(int p=v1.posicVerbo(tokensOracion);p<oraCon.length;p++){
 							predicado += oraCon[p]+" ";
 						}
+						
+						
 						o1.setCondicion(condicion.trim());
 						o1.setSujeto(sujeto.trim());
 						o1.setPredicado(predicado.trim());
@@ -98,7 +102,30 @@ public class Analizador {
 					o1.setEstado("false");
 				}
 				
-			}else{
+			}
+			else if(oracion[0].toUpperCase().equals("SINO"))
+			{
+				if(v1.validarPredicado(tokens))
+				{						
+					for(int s=1; s<v1.posicVerbo(tokens);s++){
+						sujeto += oracion[s]+" ";
+					}
+					
+					for(int p=v1.posicVerbo(tokens)+1;p<oracion.length;p++){
+						predicado += oracion[p]+" ";
+					}
+					o1.setSujeto(sujeto.trim());
+					o1.setPredicado(predicado.trim());
+					o1.setMensaje("oracion correcta");
+					o1.setEstado("true");
+				}
+				else
+				{				
+					o1.setMensaje("no existe el verbo indicado");
+					o1.setEstado("false");
+				}
+			}
+			else{
 				if(v1.validarPredicado(tokens))
 				{						
 					for(int s=0; s<v1.posicVerbo(tokens);s++){

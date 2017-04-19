@@ -100,33 +100,50 @@ procTemp = {
 		}
 		else
 		{	
-			
 			$.post(appName+'analizarTexto',params,function(data){		
 				//alert($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase());
 				if(data.estado == 'true'){	
 					alert(data.mensaje)	
 					if($('#step'+(procTemp.campo)).val().substr(0,2).toUpperCase()=='SI')
-						{
-							alert (data.condicion+"\n"+data.sujeto+"\n"+data.predicado);
-						}
-					else
-						{
-							procTemp.cadenaUml = procTemp.umlOraSimple(data); 
-							alert(procTemp.cadenaUml)
-							$confirmar = confirm("Dese Finalizar el Proceso?");
+					{
+						//alert (data.condicion+"\n"+data.sujeto+"\n"+data.predicado);
+						procTemp.condicion++
+						procTemp.umlCond(data)
+						$cond = confirm("Dese Finalizar la Oracion Condicional?");
+						 if($cond){
+							 procTemp.cadenaUml += "\n endif \n";							 
+							 $confirmar = confirm("Dese Finalizar el Proceso?");
 							 if($confirmar){
 								 procTemp.cadenaUml += "\n stop \n";
-								 procTemp.finProceso();
-								 procTemp.sigPaso=false;
-							 }else{
-								 procTemp.agregarPaso();
-								 procTemp.sigPaso=true;
+								 procTemp.finProceso();								 
 							 }
-						}
-						
-						 
-									 
-				}else{
+							 else
+							 {
+								 procTemp.agregarPaso();									
+							 }								 
+						 }
+						 else
+						 {
+							 procTemp.agregarPasoCond();								 
+						 }
+					}
+					else
+					{
+						procTemp.cadenaUml = procTemp.umlOraSimple(data); 
+						alert(procTemp.cadenaUml)
+						$confirmar = confirm("Dese Finalizar el Proceso?");
+						 if($confirmar){
+							 procTemp.cadenaUml += "\n stop \n";
+							 procTemp.finProceso();
+							 
+						 }else{
+							 procTemp.agregarPaso();
+							
+						 }
+					}									 
+				}
+				else
+				{
 					alert(data.mensaje)
 				}			
 	        });
@@ -157,6 +174,6 @@ procTemp = {
 		return "if ("+val.condicion+") then \n "+procTemp.umlOraSimple(val);
 	},
 	umlCondSino: function(val){
-		return "else\n"+procTemp.umlOraSimple(val)+"\n";
+		return "else\n"+procTemp.umlOraSimple(val);
 	}
 }
