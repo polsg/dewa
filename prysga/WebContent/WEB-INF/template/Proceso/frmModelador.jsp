@@ -82,6 +82,7 @@
 					</div>
 					
 					<div id="diagrama"></div>
+					<div id="code"></div>
 				</div>
 				
 			</div>

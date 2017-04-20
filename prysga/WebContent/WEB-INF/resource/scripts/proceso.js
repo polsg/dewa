@@ -201,7 +201,7 @@ procTemp = {
 	umlCondSino: function(val){
 		return "else\n"+procTemp.umlOraSimple(val);
 	},
-	umlShow: function(val){
-		return alert(procTemp.cadenaUml);
+	umlShow: function(){
+		return $main.find('#code').html(showMsg(procTemp.cadenaUml));
 	}
 }

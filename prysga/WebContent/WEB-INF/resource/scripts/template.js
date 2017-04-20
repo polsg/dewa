@@ -16,8 +16,11 @@ $n.find('#idPersonal').click(function(){perTemp.init();});
 $n.find('#idTipoCargo').click(function(){tcTemp.init();});
 
 showMsg = function(mensaje){ 
-	return  '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+mensaje+'</div>'; 
+	return  '<div class="alert alert-warning alert-dismissable">'+
+	'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><pre>'+
+	+mensaje+'</pre></div>' 
 }
+
 
 validarCampo = function(val){
 	if( val == null || val.length == 0 || /^\s+$/.test(val) ) {
