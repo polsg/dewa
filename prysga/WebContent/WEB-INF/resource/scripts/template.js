@@ -4,7 +4,8 @@ var appName = '/prysga/';
 
 $main.load(appName+'Modelador',function(e){	
 	$('#page-wrapper').html(e);
-	$('#listActividades').append('Paso 1: <input id="step1" name="step" class="form-control" autofocus type="text">');
+	$('#listActividades').append('<div id="estado1" > Paso 1: <input  id="step1" name="step" class="form-control" type="text" ></div>');
+	$('#step1').focus();	
 	getListTP();
 });	
 $n.find('#idIntro').click(function(){procTemp.model();});
@@ -16,9 +17,7 @@ $n.find('#idPersonal').click(function(){perTemp.init();});
 $n.find('#idTipoCargo').click(function(){tcTemp.init();});
 
 showMsg = function(mensaje){ 
-	return  '<div class="alert alert-warning alert-dismissable">'+
-	'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><pre>'+
-	+mensaje+'</pre></div>' 
+	return  '<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+mensaje+'</div>'; 
 }
 
 
@@ -35,11 +34,10 @@ getListTP=function(){
 	$.get(appName+'listTipoProcesos',function(data){
 		 $('#selTipoProceso').empty();
 		 if(data!=null){
-			 $('#selTipoProceso').append('<option value="">Seleccione una Opción</option>');
+			 $('#selTipoProceso').append('<option value="">Seleccionar opcion</option>');
 				for(var i=0;i<data.length;i++){
 					var $option = $('');							
-					$option = '<option value='+data[i].id+'>'+data[i].nombre+'</option>';				
-										
+					$option = '<option value='+data[i].id+'>'+data[i].nombre+'</option>';										
 					$('#selTipoProceso').append($option);
 				}
 			}else{

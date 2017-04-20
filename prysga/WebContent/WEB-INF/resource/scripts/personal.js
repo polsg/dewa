@@ -2,8 +2,7 @@ $main.find('#savePer').live('click',function(){
 	perTemp.guardar()});
 $main.find('#editPer').live('click',function(){
 	perTemp.getListTC();
-	 var id = $(this).attr('data-id');
-	 
+	 var id = $(this).attr('data-id');	 
 	 perTemp.getPer(id);
 });
 

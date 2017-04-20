@@ -8,11 +8,13 @@ public class Proceso {
 	private int idEmpresa;
 	private String nombEmpresa;
 	private int idTipoProceso;
-	private String nombTipoProceso;
-	private String nombProceso;
-	private String nombreResponsable;
+	private String nombTipoProceso;	
+	private String nombreProceso;
+	private String nombResponsable;	
 	private String descActividades;
+	private String codeUml;
 	private String observaciones;
+	private String fechaRegistro;
 	
 	public int getId() {
 		return id;
@@ -55,18 +57,19 @@ public class Proceso {
 	}
 	public void setIdTipoProceso(int idTipoProceso) {
 		this.idTipoProceso = idTipoProceso;
-	}	
-	public String getNombProceso() {
-		return nombProceso;
+	}		
+	
+	public String getNombreProceso() {
+		return nombreProceso;
 	}
-	public void setNombProceso(String nombProceso) {
-		this.nombProceso = nombProceso;
+	public void setNombreProceso(String nombreProceso) {
+		this.nombreProceso = nombreProceso;
 	}
-	public String getNombreResponsable() {
-		return nombreResponsable;
+	public String getNombResponsable() {
+		return nombResponsable;
 	}
-	public void setNombreResponsable(String nombreResponsable) {
-		this.nombreResponsable = nombreResponsable;
+	public void setNombResponsable(String nombResponsable) {
+		this.nombResponsable = nombResponsable;
 	}
 	public String getDescActividades() {
 		return descActividades;
@@ -74,13 +77,25 @@ public class Proceso {
 	public void setDescActividades(String descActividades) {
 		this.descActividades = descActividades;
 	}
+	
+	
+	public String getCodeUml() {
+		return codeUml;
+	}
+	public void setCodeUml(String codeUml) {
+		this.codeUml = codeUml;
+	}
 	public String getObservaciones() {
 		return observaciones;
 	}
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-	
-	
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
 
 }

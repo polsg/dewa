@@ -1771,7 +1771,7 @@ output {
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control
 	{
 	cursor: not-allowed;
-	background-color: #eee;
+	background-color: #ffffff;
 	opacity: 1;
 }
 
@@ -2295,6 +2295,47 @@ textarea.input-lg, select[multiple].input-lg {
 	color: #d9534f;
 	background-color: #fff;
 }
+/****/
+.btn-yellow {
+	color: #000000;
+	background-color: #ffff00;
+	border-color: #ffff00;
+}
+
+.btn-yellow:hover, .btn-yellow:focus, .btn-yellow:active, .btn-yellow.active,
+	.open .dropdown-toggle.btn-yellow {
+	color: #fff;
+	background-color: #d2d200;
+	border-color: #d2d200;
+}
+
+.btn-yellow:active, .btn-yellow.active, .open .dropdown-toggle.btn-yellow
+	{
+	background-image: none;
+}
+
+.btn-yellow.disabled, .btn-yellow[disabled], fieldset[disabled] .btn-yellow,
+	.btn-yellow.disabled:hover, .btn-yellow[disabled]:hover, fieldset[disabled] .btn-yellow:hover,
+	.btn-yellow.disabled:focus, .btn-yellow[disabled]:focus, fieldset[disabled] .btn-yellow:focus,
+	.btn-yellow.disabled:active, .btn-yellow[disabled]:active, fieldset[disabled] .btn-yellow:active,
+	.btn-yellow.disabled.active, .btn-yellow[disabled].active, fieldset[disabled] .btn-yellow.active
+	{
+	background-color: #ffff0f;
+	border-color: #ffff0f;
+}
+
+.btn-yellow .badge {
+	color: #ffff0f;
+	background-color: #fff;
+}
+
+
+
+/****/
+
+
+
+
 
 .btn-link {
 	font-weight: normal;

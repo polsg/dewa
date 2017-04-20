@@ -9,30 +9,37 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="form-group">
-						<select class="form-control">
-							<option value="#">Relevancia</option>
-							<option value="1">Apellidos y/o Nombres</option>
-							<option value="2">Razón Social</option>
-							<option value="3">DNI/RUC</option>
-						</select>
-					</div>
+				<div class="col-md-2">					
+					<label>Empresa</label> 
+					<input class="form-control" type="text" id="txtEmpresa"	placeholder="Descripción">	
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<input class="form-control" type="text"
-							placeholder="Ingresar una descripcion">
-
-					</div>
+				<div class="col-md-2">					
+					<label>Proceso</label> 
+					<input class="form-control" type="text"	id="txtProceso" placeholder="Nombre">	
 				</div>
-				<div class="col-md-3">
-					<div class="form-group">
-						<input type="button" class="btn btn-primary" value="BuscarEmp" />
-					</div>
+				<div class="col-md-2">					
+						<label>Tipo de Proceso</label> 
+						<select class="form-control" id="selTipoProceso">
+							
+						</select> <br> 
 				</div>
+				<div class="col-md-2">					
+					<label>Fecha Inicial</label> 
+					<input class="form-control" type="text" id="txtFecIni" >	
+				</div>
+				<div class="col-md-2">					
+					<label>Fecha Final</label> 
+					<input class="form-control" type="text"	id="txtFecFin">	
+				</div>
+				<div class="col-md-2">			
+					 <button class="btn btn-info "  id="btnSearch">Buscar</button>
+				</div>
+				<div class="col-md-2">			
+					 <button class="btn btn-danger "  id="btnPdf">Exportar Pdf</button>
+				</div>
+				
 			</div>
-
+			
 			<div class="row">
 				<div class="col-md-12">
 					<label>Lista de Empresas</label>
@@ -41,18 +48,26 @@
 						<thead>
 							<tr>
 								<th>Item</th>
-								<th>Nro. Documento</th>
 								<th>Nombres o Razón Social</th>
-								<th>Correo Electronico</th>
-								<th>Telefono</th>
+								<th>Nombre del Proceso</th>
+								<th>Tipo Proceso</th>
+								<th>Encargado del Proceso</th>
+								<th>Usuario</th>
+								<th>Fecha Registro</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
-						<tbody id="dataEmp">
+						<tbody id="dataProc">
 						</tbody>
 					</table>
 
 				</div>
+			</div>
+			
+			
+			<div class="row">
+	<!-- 		<iframe id="pdf" src="http://localhost:8080/prysga/verPdf/3" width="200" height="200"></iframe> -->
+				
 			</div>
 		</div>
 	</div>

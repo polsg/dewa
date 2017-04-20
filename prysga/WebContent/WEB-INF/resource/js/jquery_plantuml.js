@@ -2,7 +2,7 @@ $(document).ready(function(){
    plantuml_runonce();
 });
 
-<!--  taken from https://github.com/johan/js-deflate -->
+// taken from https://github.com/johan/js-deflate -->
 
 function encode64(data) {
  r = "";
@@ -70,7 +70,8 @@ $("img").each(function () {
   if (u1!=null) return;
   var u2 = $(this).attr("uml");
   if (u2=="") return;
-  $(this).attr("src", "http://www.plantuml.com/plantuml/img/"+encode64(e.data));
+  $(this).attr("src", "http://localhost:8080/plantuml/img/"+encode64(e.data));
+  //$(this).attr("src", "http://www.plantuml.com/plantuml/img/"+encode64(e.data));
   $(this).attr("uml", "");
   done = 1;
 });

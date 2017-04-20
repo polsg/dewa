@@ -44,14 +44,12 @@
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="javascript:void(0);"> <i
-							class="fa fa-user fa-2x"></i> Pol SG
-					</a> <!-- dropdown user-->
+							class="fa fa-user fa-2x"></i> ${hola} ${dni}
+											</a> <!-- dropdown user-->
 						<ul class="dropdown-menu dropdown-user">
-							<li><a href="javascript:void(0);"><i
-									class="fa fa-user fa-fw"></i>Perfil de Usuario</a></li>
+							<li><a href="javascript:void(0);" id="btnShowPerfil"><i class="fa fa-user fa-fw"></i>Perfil de Usuario</a></li>
 							<li class="divider"></li>
-							<li><a href="/test/"><i class="fa fa-sign-out fa-fw"></i>Cerrar
-									Sesion</a></li>
+							<li><a href="javascript:void(0);" id="btnOut"><i class="fa fa-sign-out fa-fw"></i>Cerrar Sesion</a></li>
 						</ul> <!-- end dropdown-user --></li>
 				</ul>
 
@@ -108,7 +106,7 @@
 		</div>
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
-
+			
 			<div id="page-inner">
 
 				<div class="row">
@@ -144,7 +142,7 @@
 	
 
 	<script type="text/javascript" src="resource/scripts/template.js"></script>
-
+	<script type="text/javascript" src="resource/scripts/usuario.js"></script>
 	<script type="text/javascript" src="resource/scripts/proceso.js"></script>
 	<script type="text/javascript" src="resource/scripts/tipocargo.js"></script>
 	<script type="text/javascript" src="resource/scripts/tipoproceso.js"></script>

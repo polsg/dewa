@@ -10,5 +10,8 @@ public interface PersonalInterfaz {
 	public int updatePersonal( Personal per );
 	public List<Personal> getAllPersonal();
 	public Personal getPersonalById( int id );
+	public Personal getPersonalByUser(String user, String pass);
+	public int validatePersonal(String user, String pass);
+	public Personal getPersonalByDni(String dni);
 
 }

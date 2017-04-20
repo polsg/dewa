@@ -6,8 +6,7 @@ public class Oracion {
 	private String sujeto;
 	private String predicado;	
 	private String mensaje;	
-	private String estado;
-	
+	private String estado;	
 	
 	public String getCondicion() {
 		return condicion;
@@ -39,8 +38,4 @@ public class Oracion {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
-	
-
 }

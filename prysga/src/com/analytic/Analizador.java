@@ -45,7 +45,7 @@ public class Analizador {
 	}
 	
 	public Oracion analize(String tokens,String words){
-		Validacion v1 = new Validacion();
+		Validador v1 = new Validador();
 		Oracion o1 = new Oracion();
 		String[] oracion = words.trim().split(" ");
 		String[] tok = tokens.trim().split(" ");
@@ -72,7 +72,7 @@ public class Analizador {
 					}
 					tokensOracion.trim();
 					//System.out.println(tokensOracion.trim());
-					if(v1.validarPredicado(tokensOracion))
+					if(v1.validarVerbo(tokensOracion))
 					{		
 						//System.out.println(v1.posicVerbo(tokensOracion));
 						for(int s=0; s<v1.posicVerbo(tokensOracion);s++){
@@ -81,9 +81,7 @@ public class Analizador {
 						
 						for(int p=v1.posicVerbo(tokensOracion);p<oraCon.length;p++){
 							predicado += oraCon[p]+" ";
-						}
-						
-						
+						}						
 						o1.setCondicion(condicion.trim());
 						o1.setSujeto(sujeto.trim());
 						o1.setPredicado(predicado.trim());
@@ -105,13 +103,13 @@ public class Analizador {
 			}
 			else if(oracion[0].toUpperCase().equals("SINO"))
 			{
-				if(v1.validarPredicado(tokens))
+				if(v1.validarVerbo(tokens))
 				{						
 					for(int s=1; s<v1.posicVerbo(tokens);s++){
 						sujeto += oracion[s]+" ";
 					}
 					
-					for(int p=v1.posicVerbo(tokens)+1;p<oracion.length;p++){
+					for(int p=v1.posicVerbo(tokens);p<oracion.length;p++){
 						predicado += oracion[p]+" ";
 					}
 					o1.setSujeto(sujeto.trim());
@@ -126,7 +124,7 @@ public class Analizador {
 				}
 			}
 			else{
-				if(v1.validarPredicado(tokens))
+				if(v1.validarVerbo(tokens))
 				{						
 					for(int s=0; s<v1.posicVerbo(tokens);s++){
 						sujeto += oracion[s]+" ";
@@ -150,10 +148,5 @@ public class Analizador {
 			
 		return o1;
 		
-	}
-	
-
-	
-	
-	
+	}	
 }

@@ -10,8 +10,6 @@
 <link href="resource/css/font-awesome.css" rel="stylesheet" />
 <!-- CUSTOM STYLES-->
 <link href="resource/css/custom.css" rel="stylesheet" />
-<!-- CUSTOM STYLES-->
-<link href="resource/css/style.css" rel="stylesheet" />
 <!-- GOOGLE FONTS-->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
@@ -37,10 +35,10 @@
 
 							<div class="form-group">
 								<input class="form-control" placeholder="Nombre de Usuario"
-									id="txtNombreUser">
+									id="usuario">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Clave" id="txtClave"
+								<input class="form-control" placeholder="Clave" id="clave"
 									type="password">
 							</div>
 							<div class="checkbox">
@@ -49,7 +47,7 @@
 							</div>
 
 							<input type="button" class="btn btn-lg btn-success btn-block"
-								id="btnEntrar" value="Entrar">
+								id="btnIntro" value="Entrar">
 
 						</div>
 					</div>
@@ -58,7 +56,7 @@
 		</div>
 	</div>
 
-	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+		<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->
 	<script src="resource/js/jquery-1.10.2.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
@@ -67,10 +65,13 @@
 	<script src="resource/js/jquery.metisMenu.js"></script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="resource/js/custom.js"></script>
-	<!-- JQUERY SCRIPTS -->
-	<script src="resource/js/jquery-2.1.1.js"></script>
-	<!-- JQUERY SCRIPTS -->
-	<script src="resource/scripts/usuario.js"></script>
+
+<script src="resource/js/jquery-1.7.1.min.js"></script>
+
+	
+
+	<script type="text/javascript" src="resource/scripts/template.js"></script>
+	<script type="text/javascript" src="resource/scripts/usuario.js"></script>
 
 </body>
 </html>

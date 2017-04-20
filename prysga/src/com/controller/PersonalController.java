@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.validation.BindingResult;
 
@@ -57,4 +58,19 @@ public class PersonalController {
 		res = "Se ha eliminado correctamente";
 		return res;	
 	}
+	
+/*	@RequestMapping(value="/validarUser",method=RequestMethod.POST)	
+	public @ResponseBody String validateUser(@RequestParam("user") String user,@RequestParam("pass") String pass){
+		Personal per = new Personal();
+		int val = dao.validatePersonal(user.trim(),pass.trim());
+		if(val==1){
+			per = dao.getPersonalByUser(user, pass);
+			
+			System.out.println(dao.getPersonalByUser(user, pass));
+			return "Admin";	
+		}else{
+			return "/";
+		}
+				
+	}*/
 }

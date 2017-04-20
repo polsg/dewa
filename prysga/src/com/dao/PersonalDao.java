@@ -84,10 +84,38 @@ public class PersonalDao implements PersonalInterfaz{
 					"claveUsuario = '"+per.getClaveUsuario()+"', "+
 					"direccion = '"+per.getDireccion()+"', "+
 					"telefono = '"+per.getTelefono()+"' "+
-					//"imagen = '"+per.getImagen()+"', "+
-					
+					//"imagen = '"+per.getImagen()+"', "+					
 				"WHERE estado = true AND "+
 				"id = "+per.getId();
 			return template.update(sql);
+	}
+	
+	@Override
+	public int validatePersonal(String user,String pass){		
+		String sql="SELECT count(*) FROM personal"
+				+ " WHERE estado = 1"
+				+ " AND email = '"+user+"'"
+				+ " AND claveUsuario = '"+pass+"'";	
+		return template.queryForObject(sql,Integer.class);		
+	}
+	
+	@Override
+	public Personal getPersonalByUser(String user, String pass) {
+		// TODO Auto-generated method stub
+		//String sql="SELECT * FROM personal WHERE estado = true AND id=?";	
+		String sql="SELECT p.id,p.idCargo AS 'idTipoCargo',tc.nombre AS 'nombreCargo',p.dni,p.apellidos,p.nombres, p.email,p.claveUsuario, p.direccion, p.telefono,p.imagen FROM personal as p"+
+				" INNER JOIN tipocargos AS tc ON p.idCargo = tc.id WHERE p.estado = TRUE AND p.email=? AND p.claveUsuario=?";
+		return template.queryForObject(sql,new Object[]{user,pass},new BeanPropertyRowMapper<Personal>(Personal.class));
+	}
+	
+	@Override
+	public Personal getPersonalByDni(String dni) {
+		// TODO Auto-generated method stub
+		//String sql="SELECT * FROM personal WHERE estado = true AND id=?";	
+		String sql="SELECT p.id,p.idCargo AS 'idTipoCargo',tc.nombre AS 'nombreCargo',p.dni,p.apellidos,p.nombres, p.email,p.claveUsuario, p.direccion, p.telefono,p.imagen FROM personal as p"+
+				" INNER JOIN tipocargos AS tc ON p.idCargo = tc.id WHERE p.estado = TRUE AND p.dni='"+dni+"'";
+		
+		System.out.println(sql);
+		return template.queryForObject(sql,new BeanPropertyRowMapper<Personal>(Personal.class));
 	}
 }
